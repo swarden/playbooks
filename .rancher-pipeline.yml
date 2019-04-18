@@ -1,0 +1,18 @@
+stages:
+- name: Build
+  steps:
+  - runScriptConfig:
+      image: python:latest
+      shellScript: |-
+        cat > Dockerfile <<EOF
+        FROM ubuntu:16.04
+        RUN apt-get update && apt-get install -y vim
+        EOF
+- name: Build image
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: test:latest
+timeout: 60
+notification: {}
