@@ -1,18 +1,4 @@
 stages:
-- name: Build
-  steps:
-  - runScriptConfig:
-      image: python:latest
-      shellScript: |-
-        DOCKERFILE="""
-        FROM ubuntu:16.04
-        RUN apt-get update && apt-get install -y vim
-        RUN echo ${CICD_GIT_COMMIT}
-        """
-
-        cat > Dockerfile <<EOF
-        $DOCKERFILE
-        EOF
 - name: Build image
   steps:
   - publishImageConfig:
